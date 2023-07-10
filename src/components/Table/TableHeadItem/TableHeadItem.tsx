@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { ThItem, SortBlock } from "./TableHeadItemStyles";
 import { headRow } from "../../../helpers/constants";
 import { DataContext } from "../../../App";
@@ -36,4 +36,4 @@ const TableHeadItem: React.FC<Props> = ({ title }) => {
   );
 };
 
-export default TableHeadItem;
+export default memo(TableHeadItem);

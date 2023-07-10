@@ -2,6 +2,10 @@ export type HeadRowType = {
   [key: string]: string;
 };
 
+type FiltersInitial = {
+  [key: string]: boolean;
+};
+
 export interface DataItem {
   [key: string]: string | boolean;
   API: string;
@@ -26,3 +30,25 @@ export interface ApiResponse {
   count: number;
   entries: DataItem[];
 }
+
+export interface filterInitial {
+  true?: boolean;
+  false?: boolean;
+  yes?: boolean;
+  no?: boolean;
+  unknown?: boolean;
+}
+
+interface HTTPSFilter {
+  [key: symbol]: string | FiltersInitial;
+  title: string;
+  initial: { true: boolean; false: boolean };
+}
+
+interface CORSFilter {
+  [key: symbol]: string | FiltersInitial;
+  title: string;
+  initial: { yes: boolean; no: boolean; unknown: boolean };
+}
+
+export type FilterOptions = (HTTPSFilter | CORSFilter)[];

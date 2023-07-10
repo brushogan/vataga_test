@@ -6,6 +6,7 @@ import { Context } from "vm";
 import getEntries from "./api/tableApi";
 import Error from "./components/Condition/Error/Error";
 import Loader from "./components/Condition/Loader/Loader";
+import FilterBlock from "./components/FilterBlock/FilterBlock";
 
 export const DataContext = createContext<Context>({});
 
@@ -19,7 +20,6 @@ const App: React.FC = (): JSX.Element => {
   useEffect(() => {
     getEntries()
       .then((data: any) => {
-        console.log(data);
         setData(data.entries);
         setCount(data.count);
       })
@@ -32,6 +32,10 @@ const App: React.FC = (): JSX.Element => {
     setViewData(data.slice(start, end));
   }, [currentPage, data]);
 
+  useEffect(() => {
+    setCount(data.length);
+  }, [data.length]);
+
   if (error) return <Error errorMessage={error} />;
   if (!data.length) return <Loader />;
   else
@@ -40,6 +44,7 @@ const App: React.FC = (): JSX.Element => {
         value={{ data, count, currentPage, viewData, setCurrentPage, setData }}
       >
         <div className="container">
+          <FilterBlock />
           <Table />
           <Pagination />
         </div>

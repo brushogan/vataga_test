@@ -1,4 +1,4 @@
-import { HeadRowType } from "./types";
+import { FilterOptions, HeadRowType } from "./types";
 
 export const pageSize = 6;
 
@@ -11,3 +11,11 @@ export const headRow: HeadRowType = {
   CORS: "Cors",
   Описание: "Description",
 };
+
+export const filterOptions: FilterOptions = [
+  { title: "HTTPS", initial: { true: false, false: false } },
+  {
+    title: "CORS",
+    initial: { yes: false, no: false, unknown: false },
+  },
+];
